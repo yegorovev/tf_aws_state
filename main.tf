@@ -2,7 +2,7 @@ resource "random_string" "this" {
   length  = 32 - length(var.bucket_name)
   upper   = false
   lower   = true
-  number  = true
+  numeric = true
   special = false
 }
 
