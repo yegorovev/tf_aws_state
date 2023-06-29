@@ -1,5 +1,13 @@
+resource "random_string" "this" {
+  length  = 32 - length(var.bucket_name)
+  upper   = false
+  lower   = true
+  number  = true
+  special = false
+}
+
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = var.bucket_name
+  bucket = join("-", [var.bucket_name, random_string.this.result])
   lifecycle {
     prevent_destroy = true
   }
